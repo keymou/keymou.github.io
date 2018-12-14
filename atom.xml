@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>菲同一般</title>
+  
+  <subtitle>心有猛虎，細嗅薔薇</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-12-14T07:28:40.653Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>keymou</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GitHub+Hexo搭建个人博客</title>
+    <link href="http://yoursite.com/2018/12/14/Github+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://yoursite.com/2018/12/14/Github+Hexo搭建个人博客/</id>
+    <published>2018-12-14T04:01:39.000Z</published>
+    <updated>2018-12-14T07:28:40.653Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>摘要：</strong> 很久之前就想动手搭建个人博客，但想到除了写前端界面还得折腾服务器，就一直没敢去尝试。最近实在无所事事，就动手尝试搭建一个属于自己的个人博客。</p><h3 id="搭建环境准备"><a href="#搭建环境准备" class="headerlink" title="搭建环境准备"></a>搭建环境准备</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;摘要：&lt;/strong&gt; 很久之前就想动手搭建个人博客，但想到除了写前端界面还得折腾服务器，就一直没敢去尝试。最近实在无所事事，就动手尝试搭建一个属于自己的个人博客。&lt;/p&gt;
+&lt;h3 id=&quot;搭建环境准备&quot;&gt;&lt;a href=&quot;#搭建环境准备&quot; class=&quot;
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
