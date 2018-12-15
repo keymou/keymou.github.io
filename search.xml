@@ -5,10 +5,10 @@
     <url>%2F2018%2F12%2F14%2FGithub-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%2F</url>
     <content type="text"><![CDATA[在茫茫互联网中拥有一处小窝，记录北漂的生活。 很久之前就想动手搭建个人博客，但感觉很难所以就一直没敢去尝试。最近实在无所事事，就动手尝试搭建一个属于自己的个人博客。 搭建环境准备软件安装配置 安装node.js官网：https://nodejs.org/en/download/提供JavaScript的开发环境，安装好以后就不用跟它再打交道，所以不用太关注它。安装完有返回版本信息说明安装成功；同样还得安装npm，安装成功后，打开cmd窗口运行下面命令，如果有返回版本信息说明安装成功。 12node -vnpm -v 安装Git官网：https://git-scm.com/download/win软件安装过程很简单，一直点击Next默认直到安装完成就行了。安装完，打开cmd窗口运行下面命令，如果有返回版本信息说明安装成功。git –version 安装Hexo博客框架 安装hexo右键点击git bash here选项，会打开Git软件界面，输入下面每行命令并回车： 12npm install hexo-cli -gnpm install hexo-deployer-git --save 第一行是安装hexo，第二行代码是安装hexo部署到git page的deployer，只需要了解，后面基本很少用到。 设置博客文件项目在除C盘以外的盘符创建一个文件目录作为blog文件夹，鼠标右键点击git bash here,依次输入下面命令并回车： 12hexo initnpm install 查看博客效果输入下面一行本地部署生成的命令：hexo s -g然后打开浏览器在网址栏输入：localhost:4000就可以看到博客的样子，如果无法打开，则继续输入下面命令： 123npm install hexo-deployer-git --savehexo cleanhexo s -g 打开该网址，你可以看到第一篇默认的博客：Hello World。但看起来很难看，后续会通过重新选择模板来对博客进行美化。 把你的博客部署到Github Pages上去]]></content>
       <categories>
-        <category>python</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>python</tag>
+        <tag>Github,Hexo</tag>
       </tags>
   </entry>
   <entry>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-12-15T02:30:48.154Z</updated>
+  <updated>2018-12-15T07:16:14.619Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yoursite.com/2018/12/14/Github-Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
     <id>http://yoursite.com/2018/12/14/Github-Hexo搭建个人博客/</id>
     <published>2018-12-14T12:26:35.000Z</published>
-    <updated>2018-12-15T02:30:48.154Z</updated>
+    <updated>2018-12-15T07:16:14.619Z</updated>
     
-    <content type="html"><![CDATA[<p><strong>在茫茫互联网中拥有一处小窝，记录北漂的生活。</strong></p><p>很久之前就想动手搭建个人博客，但感觉很难所以就一直没敢去尝试。最近实在无所事事，就动手尝试搭建一个属于自己的个人博客。</p><a id="more"></a><h4 id="搭建环境准备"><a href="#搭建环境准备" class="headerlink" title="搭建环境准备"></a>搭建环境准备</h4><h5 id="软件安装配置"><a href="#软件安装配置" class="headerlink" title="软件安装配置"></a>软件安装配置</h5><ul><li><p>安装node.js<br>官网：<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a><br>提供JavaScript的开发环境，安装好以后就不用跟它再打交道，所以不用太关注它。<br>安装完有返回版本信息说明安装成功；同样还得安装npm，安装成功后，打开cmd窗口运行下面命令，如果有返回版本信息说明安装成功。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure></li><li><p>安装Git<br>官网：<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a><br>软件安装过程很简单，一直点击Next默认直到安装完成就行了。安装完，打开cmd窗口运行下面命令，如果有返回版本信息说明安装成功。<code>git –version</code></p></li><li><p>安装Hexo博客框架</p><ol><li><p>安装hexo<br>右键点击git bash here选项，会打开Git软件界面，输入下面每行命令并回车：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><p>第一行是安装hexo，第二行代码是安装hexo部署到git page的deployer，只需要了解，后面基本很少用到。</p></li><li><p>设置博客文件项目<br>在除C盘以外的盘符创建一个文件目录作为blog文件夹，鼠标右键点击git bash here,依次输入下面命令并回车：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></li><li><p>查看博客效果<br>输入下面一行本地部署生成的命令：<code>hexo s -g</code><br>然后打开浏览器在网址栏输入：localhost:4000就可以看到博客的样子，如果无法打开，则继续输入下面命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">hexo clean</span><br><span class="line">hexo s -g</span><br></pre></td></tr></table></figure><p>打开该网址，你可以看到第一篇默认的博客：Hello World。但看起来很难看，后续会通过重新选择模板来对博客进行美化。</p></li></ol></li></ul><h5 id="把你的博客部署到Github-Pages上去"><a href="#把你的博客部署到Github-Pages上去" class="headerlink" title="把你的博客部署到Github Pages上去"></a>把你的博客部署到Github Pages上去</h5>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>在茫茫互联网中拥有一处小窝，记录北漂的生活。</strong></p><p>很久之前就想动手搭建个人博客，但感觉很难所以就一直没敢去尝试。最近实在无所事事，就动手尝试搭建一个属于自己的个人博客。</p><a id="more"></a><h4 id="搭建环境准备"><a href="#搭建环境准备" class="headerlink" title="搭建环境准备"></a>搭建环境准备</h4><h5 id="软件安装配置"><a href="#软件安装配置" class="headerlink" title="软件安装配置"></a>软件安装配置</h5><ul><li><p>安装node.js<br>官网：<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a><br>提供JavaScript的开发环境，安装好以后就不用跟它再打交道，所以不用太关注它。<br>安装完有返回版本信息说明安装成功；同样还得安装npm，安装成功后，打开cmd窗口运行下面命令，如果有返回版本信息说明安装成功。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure></li><li><p>安装Git<br>官网：<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a><br>软件安装过程很简单，一直点击Next默认直到安装完成就行了。安装完，打开cmd窗口运行下面命令，如果有返回版本信息说明安装成功。<code>git –version</code></p></li><li><p>安装Hexo博客框架</p><ol><li><p>安装hexo<br>右键点击git bash here选项，会打开Git软件界面，输入下面每行命令并回车：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><p>第一行是安装hexo，第二行代码是安装hexo部署到git page的deployer，只需要了解，后面基本很少用到。</p></li><li><p>设置博客文件项目<br>在除C盘以外的盘符创建一个文件目录作为blog文件夹，鼠标右键点击git bash here,依次输入下面命令并回车：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></li><li><p>查看博客效果<br>输入下面一行本地部署生成的命令：<code>hexo s -g</code><br>然后打开浏览器在网址栏输入：localhost:4000就可以看到博客的样子，如果无法打开，则继续输入下面命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">hexo clean</span><br><span class="line">hexo s -g</span><br></pre></td></tr></table></figure><p>打开该网址，你可以看到第一篇默认的博客：Hello World。但看起来很难看，后续会通过重新选择模板来对博客进行美化。</p></li></ol></li></ul><h5 id="把你的博客部署到Github-Pages上去"><a href="#把你的博客部署到Github-Pages上去" class="headerlink" title="把你的博客部署到Github Pages上去"></a>把你的博客部署到Github Pages上去</h5>]]></content>
     
     <summary type="html">
     
@@ -32,10 +32,10 @@
     
     </summary>
     
-      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
     
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="Github,Hexo" scheme="http://yoursite.com/tags/Github-Hexo/"/>
     
   </entry>
   
