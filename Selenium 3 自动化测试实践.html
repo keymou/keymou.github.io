@@ -137,7 +137,7 @@
 <meta property="og:image" content="http://wx4.sinaimg.cn/mw690/663b8092ly1fzc6bz63htj20ny07rmxd.jpg">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/663b8092ly1fzc6c2nnhij20zj0qpacl.jpg">
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/663b8092ly1fzc6cobe9jj21hc0e5tdx.jpg">
-<meta property="og:updated_time" content="2019-01-19T16:05:59.309Z">
+<meta property="og:updated_time" content="2019-01-20T01:55:46.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Selenium 3 自动化测试实践">
 <meta name="twitter:description" content="介绍下Web 应用程序界面常用的自动化测试框架 Selenium。">
@@ -677,35 +677,69 @@
 <p>另外一种方法，WebDriver在每个元素上都有“提交”的便捷方法。如果在表单中的元素上调用它，WebDriver 将向上走DOM，直到找到封闭的表单，然后调用submit。但如果元素不在表单中，则会引发异常<code>NoSuchElementException</code>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过定位搜索框并通过submit()提交搜索框的内容，达到点击搜索按钮的效果</span></span><br><span class="line">driver.find_element_by_id(<span class="string">"query"</span>).submit()</span><br></pre></td></tr></table></figure>
 <h4 id="模拟键盘输入"><a href="#模拟键盘输入" class="headerlink" title="模拟键盘输入"></a>模拟键盘输入</h4><p><code>send_keys()</code>方法虽然可以模拟键盘输入，但除此之外，还需要输入其它键，比如空格，这个时候就用到 <code>Keys()</code>,对应类：<code>selenium.webdriver.common.keys.Keys</code>，使用方法：<code>send_keys(*keys_to_send)</code> 。类似的方法还有 <code>send_keys_to_element(element, *keys_to_send)</code></p>
-<ul>
-<li><p>BACK_SPACE：删除键（BackSpace）(<code>send_key(Keys.BACK_SPACE)</code>)</p>
-</li>
-<li><p>SPACE：空格键（Space）</p>
-</li>
-<li><p>TAB：制表键（TAB）</p>
-</li>
-<li><p>ESCAPE：回退键（Esc）</p>
-</li>
-<li><p>ENTER：回车键（Enter）</p>
-</li>
-<li><p>CONTROL，’a’：全选（Ctrl+A）(<code>send_key(Keys.CONTROL, &#39;a&#39;)</code>)</p>
-</li>
-<li><p>CONTROL，’c’：复制（Ctrl+C）</p>
-</li>
-<li><p>CONTROL，’x’：剪切（Ctrl+X）</p>
-</li>
-<li><p>CONTROL，’v’：粘贴（Ctrl+V）</p>
-</li>
-<li>ARROW_DOWN：向下箭头</li>
-<li><p>ARROW_LEFT： 向左箭头</p>
-</li>
-<li><p>F1：键盘F1</p>
-</li>
-<li><p>…</p>
-</li>
-<li><p>F12：键盘F12</p>
-</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">按键</th>
+<th>详细描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">BACK_SPACE</td>
+<td>删除键（BackSpace）</td>
+</tr>
+<tr>
+<td style="text-align:left">SPACE</td>
+<td>空格键（Space）</td>
+</tr>
+<tr>
+<td style="text-align:left">TAB</td>
+<td>制表键（TAB）</td>
+</tr>
+<tr>
+<td style="text-align:left">ESCAPE</td>
+<td>回退键（Esc）</td>
+</tr>
+<tr>
+<td style="text-align:left">ENTER</td>
+<td>回车键（Enter）</td>
+</tr>
+<tr>
+<td style="text-align:left">CONTROL，’a’</td>
+<td>全选（Ctrl+A）</td>
+</tr>
+<tr>
+<td style="text-align:left">CONTROL，’c’</td>
+<td>复制（Ctrl+C）</td>
+</tr>
+<tr>
+<td style="text-align:left">CONTROL，’x’</td>
+<td>剪切（Ctrl+X）</td>
+</tr>
+<tr>
+<td style="text-align:left">CONTROL，’v’</td>
+<td>粘贴（Ctrl+V）</td>
+</tr>
+<tr>
+<td style="text-align:left">ARROW_DOWN</td>
+<td>⬇</td>
+</tr>
+<tr>
+<td style="text-align:left">F1</td>
+<td>键盘F1</td>
+</tr>
+<tr>
+<td style="text-align:left">…</td>
+<td>…</td>
+</tr>
+<tr>
+<td style="text-align:left">F12</td>
+<td>键盘F12</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全选CTRL+A</span></span><br><span class="line">element.send_key(Keys.CONTROL, <span class="string">'a'</span>)</span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">element.send_key(Keys.BACK_SPACE)</span><br></pre></td></tr></table></figure>
 <h4 id="动作链（Action-Chains）"><a href="#动作链（Action-Chains）" class="headerlink" title="动作链（Action Chains）"></a>动作链（<em>Action Chains</em>）</h4><p><em>ActionChains</em> 是一种自动执行低级别交互的方法，例如鼠标移动，鼠标按钮操作，按键和上下文菜单交互。这对于执行更复杂的操作非常有用，例如悬停和拖放。生成用户操作，在<em>ActionChains</em> 对象上调用操作方法时，操作将存储在<em>ActionChains</em> 对象的队列中。当您调用<code>perform()</code>时，事件将按它们排队的顺序触发。</p>
 <p><em>ActionChains</em> 可用于链式模式：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> ActionChains</span><br><span class="line"></span><br><span class="line">menu = driver.find_element_by_css_selector(<span class="string">".nav"</span>)</span><br><span class="line">hidden_submenu = driver.find_element_by_css_selector(<span class="string">".nav #submenu1"</span>)</span><br><span class="line">actions = ActionChains(driver)</span><br><span class="line"><span class="comment"># 模拟先移动鼠标到menu元素，并点击hidden_submenu元素</span></span><br><span class="line">actions.move_to_element(menu).click(hidden_submenu).perform()</span><br></pre></td></tr></table></figure>
@@ -727,13 +761,90 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.ui <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"></span><br><span class="line">driver = webdriver.Firefox()</span><br><span class="line">driver.get(<span class="string">"http://somedomain/url_that_delays_loading"</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="comment"># 抛出TimeoutException之前等待最多10秒，除非它发现元素在10秒内返回</span></span><br><span class="line">    element = WebDriverWait(driver, <span class="number">10</span>).until(</span><br><span class="line">        EC.presence_of_element_located((By.ID, <span class="string">"myDynamicElement"</span>))</span><br><span class="line">    )</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    driver.quit()</span><br></pre></td></tr></table></figure>
 <p>默认情况下，<em>WebDriverWait</em> 每<em>500</em> 毫秒调用一次 <em>ExpectedCondition</em>，直到成功返回。</p>
 <p><em>expected_conditions</em> 模块包含一组用于<em>WebDriverWait</em> 的预定义条件，具体描述如下：</p>
-<p>| 预期条件                               | 描述                                     |<br>| :————————————- | :————————————— |<br>| title_is                               | 标题是某内容                             |<br>| title_contains                         | 标题包含某内容                           |<br>| presence_of_element_located            | 节点加载出来，传人定位元组如(By.ID, ‘q’) |<br>| visibility_of_element_located          | 节点可见，传入定位元组                   |<br>| visibility_of                          | 可见，传入节点对象                       |<br>| presence_of_all_elements_located       | 所有结点加载出来                         |<br>| text_to_be_present_in_element          | 某个节点文本包含某文字                   |<br>| text_to_be_present_in_element_value    | 某个节点值包含某文字                     |<br>| frame_to_be_available_and_switch_to_it | 加载并切换                               |<br>| invisibility_of_element_located        | 结点不可见                               |<br>| element_to_be_clickable                | 节点可点击                               |<br>| staleness_of                           | 判断节点是否仍在DOM ，判断页面是否刷新   |<br>| element_to_be_selected                 | 节点可选择，传节点对象                   |<br>| element_located_to_be_selected         | 结点可选择，传入定位元组                 |<br>| element_selection_state_to_be          | 传入结点对象和状态                       |<br>| element_located_selection_state_to_be  | 传入定位元组和状态                       |<br>| alert_is_present                       | 是否出现警告                             |</p>
-<p>感受一下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"></span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line"><span class="comment"># element_to_be_clickable()方法传入定位元组</span></span><br><span class="line">element = wait.until(EC.element_to_be_clickable((By.ID, <span class="string">'someid'</span>)))</span><br><span class="line">wait.until(EC.presence_of_element_located((By.ID, <span class="string">'content_left'</span>)))</span><br></pre></td></tr></table></figure>
-<p>如果以上的都不符合，还可以创建自定义等待条件，可以使用带有<code>__call__</code>方法的类创建自定义等待条件，该方法在条件不匹配时返回 <em>False</em>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">element_has_css_class</span><span class="params">(object)</span>:</span></span><br><span class="line">  <span class="string">"""期望检查元素是否具有特定的css类</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  locator - 用于定位元素</span></span><br><span class="line"><span class="string">  只要有特定的css类，返回WebEmlement</span></span><br><span class="line"><span class="string">  """</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, locator, css_class)</span>:</span></span><br><span class="line">    self.locator = locator</span><br><span class="line">    self.css_class = css_class</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, driver)</span>:</span></span><br><span class="line">    element = driver.find_element(*self.locator)   <span class="comment"># Finding the referenced element</span></span><br><span class="line">    <span class="keyword">if</span> self.css_class <span class="keyword">in</span> element.get_attribute(<span class="string">"class"</span>):</span><br><span class="line">        <span class="keyword">return</span> element</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Wait until an element with id='myNewInput' has class 'myCSSClass'</span></span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line">element = wait.until(element_has_css_class((By.ID, <span class="string">'myNewInput'</span>), <span class="string">"myCSSClass"</span>))</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">预期条件</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">title_is</td>
+<td style="text-align:left">标题是某内容</td>
+</tr>
+<tr>
+<td style="text-align:left">title_contains</td>
+<td style="text-align:left">标题包含某内容</td>
+</tr>
+<tr>
+<td style="text-align:left">presence_of_element_located</td>
+<td style="text-align:left">节点加载出来，传人定位元组如(By.ID, ‘q’)</td>
+</tr>
+<tr>
+<td style="text-align:left">visibility_of_element_located</td>
+<td style="text-align:left">节点可见，传入定位元组</td>
+</tr>
+<tr>
+<td style="text-align:left">visibility_of</td>
+<td style="text-align:left">可见，传入节点对象</td>
+</tr>
+<tr>
+<td style="text-align:left">presence_of_all_elements_located</td>
+<td style="text-align:left">所有结点加载出来</td>
+</tr>
+<tr>
+<td style="text-align:left">text_to_be_present_in_element</td>
+<td style="text-align:left">某个节点文本包含某文字</td>
+</tr>
+<tr>
+<td style="text-align:left">text_to_be_present_in_element_value</td>
+<td style="text-align:left">某个节点值包含某文字</td>
+</tr>
+<tr>
+<td style="text-align:left">frame_to_be_available_and_switch_to_it</td>
+<td style="text-align:left">加载并切换</td>
+</tr>
+<tr>
+<td style="text-align:left">invisibility_of_element_located</td>
+<td style="text-align:left">结点不可见</td>
+</tr>
+<tr>
+<td style="text-align:left">element_to_be_clickable</td>
+<td style="text-align:left">节点可点击</td>
+</tr>
+<tr>
+<td style="text-align:left">staleness_of</td>
+<td style="text-align:left">判断节点是否仍在DOM ，判断页面是否刷新</td>
+</tr>
+<tr>
+<td style="text-align:left">element_to_be_selected</td>
+<td style="text-align:left">节点可选择，传节点对象</td>
+</tr>
+<tr>
+<td style="text-align:left">element_located_to_be_selected</td>
+<td style="text-align:left">结点可选择，传入定位元组</td>
+</tr>
+<tr>
+<td style="text-align:left">element_selection_state_to_be</td>
+<td style="text-align:left">传入结点对象和状态</td>
+</tr>
+<tr>
+<td style="text-align:left">element_located_selection_state_to_be</td>
+<td style="text-align:left">传入定位元组和状态</td>
+</tr>
+<tr>
+<td style="text-align:left">alert_is_present</td>
+<td style="text-align:left">是否出现警告</td>
+</tr>
+</tbody>
+</table>
+<p>  感受一下：</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"></span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line"><span class="comment"># element_to_be_clickable()方法传入定位元组</span></span><br><span class="line">element = wait.until(EC.element_to_be_clickable((By.ID, <span class="string">'someid'</span>)))</span><br><span class="line">wait.until(EC.presence_of_element_located((By.ID, <span class="string">'content_left'</span>)))</span><br></pre></td></tr></table></figure>
+<p>  如果以上的都不符合，还可以创建自定义等待条件，可以使用带有<code>__call__</code>方法的类创建自定义等待条件，该方法在条件不匹配时返回 <em>False</em>。</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">element_has_css_class</span><span class="params">(object)</span>:</span></span><br><span class="line">  <span class="string">"""期望检查元素是否具有特定的css类</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  locator - 用于定位元素</span></span><br><span class="line"><span class="string">  只要有特定的css类，返回WebEmlement</span></span><br><span class="line"><span class="string">  """</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, locator, css_class)</span>:</span></span><br><span class="line">    self.locator = locator</span><br><span class="line">    self.css_class = css_class</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, driver)</span>:</span></span><br><span class="line">    element = driver.find_element(*self.locator)   <span class="comment"># Finding the referenced element</span></span><br><span class="line">    <span class="keyword">if</span> self.css_class <span class="keyword">in</span> element.get_attribute(<span class="string">"class"</span>):</span><br><span class="line">        <span class="keyword">return</span> element</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Wait until an element with id='myNewInput' has class 'myCSSClass'</span></span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line">element = wait.until(element_has_css_class((By.ID, <span class="string">'myNewInput'</span>), <span class="string">"myCSSClass"</span>))</span><br></pre></td></tr></table></figure>
 <h4 id="休眠"><a href="#休眠" class="headerlink" title="休眠"></a>休眠</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># 休眠5秒</span></span><br><span class="line">time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 <h4 id="iframe切换"><a href="#iframe切换" class="headerlink" title="iframe切换"></a>iframe切换</h4><p>在<em>web</em> 应用中经常会遇到<em>frame/iframe</em> 表单嵌套页面的应用，<em>webdriver</em> 只能在一个页面上对元素识别与定位，对于frame/iframe无法直接定位；</p>
 <p>这时候就需要通过<em>switch_to.frame()</em> 方法将当前定位的主体切换为<em>frame/iframe</em> 内嵌的的页面中：</p>
