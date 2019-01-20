@@ -135,7 +135,7 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/663b8092ly1fynj8iw07qj20wi0h5n0p.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/663b8092ly1fynltrbs13j20pz098mx9.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/663b8092ly1fynlsezjtfj21h00kp75l.jpg">
-<meta property="og:updated_time" content="2019-01-20T03:07:47.290Z">
+<meta property="og:updated_time" content="2019-01-20T04:05:22.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 爬虫之模拟Ajax请求抓取新浪微博">
 <meta name="twitter:description" content="Python 模拟Ajax 请求，抓取新浪微博。">
@@ -490,7 +490,7 @@
 <a id="more"></a>
 <h4 id="Ajax-是什么"><a href="#Ajax-是什么" class="headerlink" title="Ajax 是什么"></a><em>Ajax</em> 是什么</h4><p>全称为 <em>Asynchronous JavaScript and XML</em>，即异步的 <em>JavaScript</em> 和 <em>XML</em>，利用 <em>JavaScript</em> 在保证页面不被刷新、页面链接不变的情况下与服务器交换数据并更新部分网页的技术。</p>
 <p>拿新浪微博为例，打开我的<a href="https://m.weibo.cn/u/1715175570" target="_blank" rel="noopener">微博链接</a>，一直下滑，可以发现下滑几个微博之后，会出现一个加载的动画，不一会儿就继续出现了新的微博内容，这个过程其实就是 <em>Ajax</em> 加载的过程。</p>
-<h5 id="Ajax-基本原理"><a href="#Ajax-基本原理" class="headerlink" title="Ajax 基本原理"></a>Ajax 基本原理</h5><p>这里不多做介绍，详细可参考 <em>W3school</em> 关于 <a href="http://www.w3school.com.cn/ajax/index.asp" target="_blank" rel="noopener"><em>Ajax 教程</em></a></p>
+<h5 id="Ajax-基本原理"><a href="#Ajax-基本原理" class="headerlink" title="Ajax 基本原理"></a>Ajax 基本原理</h5><p>这里不多做介绍，详细可参考 <em>W3school</em> 关于 <a href="https://www.w3school.com.cn/ajax/index.asp" target="_blank" rel="noopener"><em>Ajax 教程</em></a></p>
 <h4 id="分析请求"><a href="#分析请求" class="headerlink" title="分析请求"></a>分析请求</h4><p>用<em>Firefox</em> 浏览器打开我的<a href="https://m.weibo.cn/u/1715175570" target="_blank" rel="noopener">微博链接</a>，打开火狐浏览器自带的 <em>Web</em> 开发者工具，切换“网络”选项卡，可以发现这里出现很多条请求。<em>Ajax</em> 的请求类型是 <em>xhr</em>，可以通过工具栏上不同请求类型如 <em>HTML、CSS、JS、XHR</em> 等过滤请求。</p>
 <p>点击”<em>XHR</em>“ 类型，过滤出 <em>Ajax</em> 请求再做分析。点击其中一条，可以查询该条请求的详细。在“消息头”选项卡中查看 请求网址，请求方法，以及请求头的详细，<code>X-Requested-With</code> 是 <code>XMLHttpRequest</code>，这就标记了此请求是 <em>Ajax</em> 请求。</p>
 <p>随后可点击下 ”响应“，可以看到 <em>JSON</em> 格式的响应内容，返回的是个人信息，如昵称、简介等，这也是用来渲染个人主页所用的数据。下滑页面以加载新的微博内容，可以看到，会有不断的 Ajax 请求发出。选择其中一个请求，分析它的参数信息。这是一个 <em>GET</em> 请求，请求链接是 ：</p>
@@ -778,7 +778,7 @@
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://www.mongodb.org.cn/" title="mongodb" target="_blank" rel="external nofollow">mongodb</a>
+                    <a href="https://www.mongodb.org.cn/" title="mongodb" target="_blank" rel="external nofollow">mongodb</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
