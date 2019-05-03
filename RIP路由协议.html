@@ -138,7 +138,7 @@
 <meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv1.png">
 <meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv2.png">
 <meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv2_认证.png">
-<meta property="og:updated_time" content="2019-05-03T16:14:01.178Z">
+<meta property="og:updated_time" content="2019-05-03T16:21:24.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RIP路由协议">
 <meta name="twitter:description" content="​        由于换了份工作，因工作需要的关系，最近开始学习 IP路由技术，总结下个人对 RIP路由协议的理解吧~">
@@ -491,8 +491,7 @@
       
         <p>​        由于换了份工作，因工作需要的关系，最近开始学习 IP路由技术，总结下个人对 RIP路由协议的理解吧~</p>
 <a id="more"></a>
-<h3 id="RIP-简介"><a href="#RIP-简介" class="headerlink" title="RIP 简介"></a>RIP 简介</h3><hr>
-<p>RIP 是 Routing Information Protocol（路由信息协议）的简称，它是一种较为简单的内部网关协议（Interior Gateway Protocol）。</p>
+<h3 id="RIP-简介"><a href="#RIP-简介" class="headerlink" title="RIP 简介"></a>RIP 简介</h3><p>RIP 是 Routing Information Protocol（路由信息协议）的简称，它是一种较为简单的内部网关协议（Interior Gateway Protocol）。</p>
 <p>RIP 是一种基于距离矢量（Distance-Vector）算法的协议，它使用跳数（Hop Count）作为度量来衡量到达目的网络的距离。</p>
 <p><strong>距离</strong>：也称<strong>跳数</strong>，从一路由器到直连的网络的距离定义为1，从一路由器到非直连路由器的距离定义为所经过的路由器数加1。</p>
 <p>RIP 允许一条路径最多包含15个路由器，即“距离”等于16时不可达。</p>
@@ -507,11 +506,9 @@
 <li>路由器交换的信息是当前本路由器所知道的所有信息，即当前的路由表；</li>
 <li>按固定时间间隔交换路由信息。</li>
 </ol>
-<h3 id="RIP-工作原理"><a href="#RIP-工作原理" class="headerlink" title="RIP 工作原理"></a>RIP 工作原理</h3><hr>
-<p>RIP 协议是基于D-V 算法实现，RIP 规定，缺省情况下，网关每 30秒向外广播一个 RIP 报文，报文信息来自本地路由表。RIP 报文中，其度量值 metric 以跳数计：与目的网络直接相连的网关规定为 1 跳，相隔一个网关则为 2 跳……依次类推。一条路径的度量值即距离为该路径（从源发送方到目的网络）上的网关数。</p>
+<h3 id="RIP-工作原理"><a href="#RIP-工作原理" class="headerlink" title="RIP 工作原理"></a>RIP 工作原理</h3><p>RIP 协议是基于D-V 算法实现，RIP 规定，缺省情况下，网关每 30秒向外广播一个 RIP 报文，报文信息来自本地路由表。RIP 报文中，其度量值 metric 以跳数计：与目的网络直接相连的网关规定为 1 跳，相隔一个网关则为 2 跳……依次类推。一条路径的度量值即距离为该路径（从源发送方到目的网络）上的网关数。</p>
 <p>为限制收敛时间，防止路由环路，RIP 规定度量值取 0~15 之间的整数，大于或等于 16 的跳数被定义为无穷大，即目的网络或主机不可达。由于这个限制，使得 RIP 不可能在大型网络中得到应用。</p>
-<h4 id="路由数据库"><a href="#路由数据库" class="headerlink" title="路由数据库"></a>路由数据库</h4><hr>
-<p>每个运行RIP的路由器管理一个路由数据库，数据库包含了到所有可达目的地的路由项，路由项包含以下信息：</p>
+<h4 id="路由数据库"><a href="#路由数据库" class="headerlink" title="路由数据库"></a>路由数据库</h4><p>每个运行RIP的路由器管理一个路由数据库，数据库包含了到所有可达目的地的路由项，路由项包含以下信息：</p>
 <ul>
 <li>Destination/Mask（目的 IP）：主机或网络的地址、掩码</li>
 <li>Nexthop （下一跳地址）：到达目的地址需要经过的相邻路由器的 IP</li>
@@ -528,8 +525,7 @@
 <p><strong>老化路由表项</strong>：如果在 180 秒内没有收到关于某条路由器的更新，则该条路由在路由表中的度量值 metric 将会被设置为 16，路由被老化。</p>
 <p><strong>垃圾收集表项</strong>：在180 秒过后，路由器仍没有收到相应路由条目的更新，路由老化，该跳路由条目度量值设为 16， RIP 以度量值为 16 向外发送这条路由的更新，同时启动缺省值为 120 秒的垃圾收集定时器。</p>
 <p><strong>删除路由表项</strong>：120 秒之后，路由器仍然没有收到相应路由条目的更新，则路由器将该路由条目删除。</p>
-<h4 id="RIP-路由表的形成"><a href="#RIP-路由表的形成" class="headerlink" title="RIP 路由表的形成"></a>RIP 路由表的形成</h4><hr>
-<p>RIP 启动时的初始路由表仅包含本设备的一些直连接口路由。通过相邻设备互相学习路由表项，才能实现各网段路由互通。</p>
+<h4 id="RIP-路由表的形成"><a href="#RIP-路由表的形成" class="headerlink" title="RIP 路由表的形成"></a>RIP 路由表的形成</h4><p>RIP 启动时的初始路由表仅包含本设备的一些直连接口路由。通过相邻设备互相学习路由表项，才能实现各网段路由互通。</p>
 <p><img src="https://github.com/keymou/blog_images/raw/master/content/RIP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/router%E5%BD%A2%E6%88%90.gif" alt="路由表的形成"></p>
 <p>RIP 路由表简化过程如上图所示：</p>
 <ul>
@@ -537,32 +533,23 @@
 <li>当 RouterB 从接口接收到 RouterA发送的 Request报文后，把自己的 RIP 路由表封装在 Response 报文内，然后向该接口对应的网络广播、</li>
 <li>RouterA 根据 RouterB 发送的 Response 报文，形成自己的路由表</li>
 </ul>
-<h4 id="RIP-更新维护"><a href="#RIP-更新维护" class="headerlink" title="RIP 更新维护"></a>RIP 更新维护</h4><hr>
-<p>RIP 协议在更新和维护路由信息时收到四个定时器控制</p>
-<h5 id="更新定时器-Update-timer"><a href="#更新定时器-Update-timer" class="headerlink" title="更新定时器 Update timer"></a>更新定时器 Update timer</h5><hr>
-<p>定义了发送路由器更新的时间间隔，缺省为 30 秒，当此定时器超时时，立即发送更新报文。</p>
-<h5 id="老化定时器（Age-timer）"><a href="#老化定时器（Age-timer）" class="headerlink" title="老化定时器（Age timer）"></a>老化定时器（Age timer）</h5><hr>
-<p>定义了路由条目的老化时间。如果在老化时间内没有收到邻接路由器发来关于某条路由器的更新报文，则该条路由在路由表中的度量值将会被设置为 16，认为该路由不可达。</p>
+<h4 id="RIP-更新维护"><a href="#RIP-更新维护" class="headerlink" title="RIP 更新维护"></a>RIP 更新维护</h4><p>RIP 协议在更新和维护路由信息时收到四个定时器控制</p>
+<h5 id="更新定时器-Update-timer"><a href="#更新定时器-Update-timer" class="headerlink" title="更新定时器 Update timer"></a>更新定时器 Update timer</h5><p>定义了发送路由器更新的时间间隔，缺省为 30 秒，当此定时器超时时，立即发送更新报文。</p>
+<h5 id="老化定时器（Age-timer）"><a href="#老化定时器（Age-timer）" class="headerlink" title="老化定时器（Age timer）"></a>老化定时器（Age timer）</h5><p>定义了路由条目的老化时间。如果在老化时间内没有收到邻接路由器发来关于某条路由器的更新报文，则该条路由在路由表中的度量值将会被设置为 16，认为该路由不可达。</p>
 <ul>
 <li>在路由创建被创建时初始化</li>
 <li>每次收到这条路由对应的路由更新时，重新初始化</li>
 <li>如果定期器在缺省180s内没有更新，路由超时</li>
 </ul>
-<h5 id="垃圾收集定时器（Garbage-collect-timer）"><a href="#垃圾收集定时器（Garbage-collect-timer）" class="headerlink" title="垃圾收集定时器（Garbage-collect timer）"></a>垃圾收集定时器（Garbage-collect timer）</h5><hr>
-<p>定义了一条路由器从度量值变为16开始，直到它从路由表里被删除所经过的时间，用于“垃圾回收”。若在垃圾收集时间内不可达路由没有收到来自同一邻居的更新，则该路由将被从 RIP 路由表中彻底删除。</p>
+<h5 id="垃圾收集定时器（Garbage-collect-timer）"><a href="#垃圾收集定时器（Garbage-collect-timer）" class="headerlink" title="垃圾收集定时器（Garbage-collect timer）"></a>垃圾收集定时器（Garbage-collect timer）</h5><p>定义了一条路由器从度量值变为16开始，直到它从路由表里被删除所经过的时间，用于“垃圾回收”。若在垃圾收集时间内不可达路由没有收到来自同一邻居的更新，则该路由将被从 RIP 路由表中彻底删除。</p>
 <ul>
 <li>路由的权重设置为16，RIP以度量值为16发送这条路由的更新</li>
 <li>缺省120s后，仍没有得到更新，删除该路由</li>
 </ul>
-<h5 id="抑制定时器（Suppress-timer）"><a href="#抑制定时器（Suppress-timer）" class="headerlink" title="抑制定时器（Suppress timer）"></a>抑制定时器（Suppress timer）</h5><hr>
-<p>定义了RIP路由处于抑制状态的时长。•当一条路由的度量值变为16时，该路由将进入抑制状态。在抑制状态，只有来自同一邻居并且度量值小于16的路由更新才会被路由器接收，取代不可达路由。缺省为120s。</p>
-<h4 id="RIP-防止路由环路的机制"><a href="#RIP-防止路由环路的机制" class="headerlink" title="RIP 防止路由环路的机制"></a>RIP 防止路由环路的机制</h4><hr>
-<h5 id="路由环路的产生原因"><a href="#路由环路的产生原因" class="headerlink" title="路由环路的产生原因"></a>路由环路的产生原因</h5><h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><h6 id="1-计数到无穷（Counting-to-infinity）"><a href="#1-计数到无穷（Counting-to-infinity）" class="headerlink" title="1. 计数到无穷（Counting to infinity）"></a>1. 计数到无穷（Counting to infinity）</h6><hr>
-<p>将度量值等于16的路由定义为不可达（infinity）。在路由环路发生时，某条路由的度量值将会增加到16，该路由被认为不可达，避免路由环路的产生。</p>
-<h6 id="2-触发更新（Triggered-Updates）"><a href="#2-触发更新（Triggered-Updates）" class="headerlink" title="2. 触发更新（Triggered Updates）"></a>2. 触发更新（Triggered Updates）</h6><hr>
-<p>RIP 通过触发更新来避免在多个路由器之间形成路由环路的可能，而且可以加快网络的收敛速度。一旦某条路由的度量值发生了变化，就立即向邻居路由器发布更新报文，而不是等到更新周期的到来。</p>
-<h6 id="3-水平分割（Split-Horizon）"><a href="#3-水平分割（Split-Horizon）" class="headerlink" title="3. 水平分割（Split Horizon）"></a>3. 水平分割（Split Horizon）</h6><hr>
-<p>RIP 从某个接口学到的路由信息不会重新发回该接口的邻居路由器。这样不但减少带宽消耗，还可以防止路由环路。</p>
+<h5 id="抑制定时器（Suppress-timer）"><a href="#抑制定时器（Suppress-timer）" class="headerlink" title="抑制定时器（Suppress timer）"></a>抑制定时器（Suppress timer）</h5><p>定义了RIP路由处于抑制状态的时长。•当一条路由的度量值变为16时，该路由将进入抑制状态。在抑制状态，只有来自同一邻居并且度量值小于16的路由更新才会被路由器接收，取代不可达路由。缺省为120s。</p>
+<h4 id="RIP-防止路由环路的机制"><a href="#RIP-防止路由环路的机制" class="headerlink" title="RIP 防止路由环路的机制"></a>RIP 防止路由环路的机制</h4><h5 id="路由环路的产生原因"><a href="#路由环路的产生原因" class="headerlink" title="路由环路的产生原因"></a>路由环路的产生原因</h5><h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><h6 id="1-计数到无穷（Counting-to-infinity）"><a href="#1-计数到无穷（Counting-to-infinity）" class="headerlink" title="1. 计数到无穷（Counting to infinity）"></a>1. 计数到无穷（Counting to infinity）</h6><p>将度量值等于16的路由定义为不可达（infinity）。在路由环路发生时，某条路由的度量值将会增加到16，该路由被认为不可达，避免路由环路的产生。</p>
+<h6 id="2-触发更新（Triggered-Updates）"><a href="#2-触发更新（Triggered-Updates）" class="headerlink" title="2. 触发更新（Triggered Updates）"></a>2. 触发更新（Triggered Updates）</h6><p>RIP 通过触发更新来避免在多个路由器之间形成路由环路的可能，而且可以加快网络的收敛速度。一旦某条路由的度量值发生了变化，就立即向邻居路由器发布更新报文，而不是等到更新周期的到来。</p>
+<h6 id="3-水平分割（Split-Horizon）"><a href="#3-水平分割（Split-Horizon）" class="headerlink" title="3. 水平分割（Split Horizon）"></a>3. 水平分割（Split Horizon）</h6><p>RIP 从某个接口学到的路由信息不会重新发回该接口的邻居路由器。这样不但减少带宽消耗，还可以防止路由环路。</p>
 <p>水平分割在不同网络中实现有所区别，分为按照接口和按照邻居进行水平分割。广播网、P2P 和 P2MP 网络中是按照接口进行水平分割的，如下图所示：</p>
 <p><img src="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/水平分割_1.png" alt=""></p>
 <p>RouterA 会向 RouterB 发送到网络 10.0.0.0/8 的路由信息，如果没有配置水平分割，RouterB 会将从 RouterA 学习到的这条路由再发送回给 RouterA。这样，RouterA 可以学习到两条到达 10.0.0.0/8 网络的路由：跳数为 0 的直连路由；下一跳指向 RouterB，且跳数为 2 的路由。</p>
@@ -570,14 +557,11 @@
 <p>对于 NBMA（Non-Broadcast Multiple Access）网络，由于一个接口上连接多个邻居，所以是按照邻居进行水平分割的。路由就会按照单播方式发送，同一接口上收到的路由可以按邻居进行区分。从某一接口的对端邻居处学习到路由，不会再通过该接口发送回去。</p>
 <p><img src="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/水平分割_2.png" alt=""></p>
 <p>在 NBMA 网络配置了水平分割之后，RouterA 会将从 RouterB 学习到的 102.16.0.0/16 路由发送给 RouterC，但是不会再发送回给 RouterB。</p>
-<h6 id="4-毒性逆转（Poison-Reverse）"><a href="#4-毒性逆转（Poison-Reverse）" class="headerlink" title="4. 毒性逆转（Poison Reverse）"></a>4. 毒性逆转（Poison Reverse）</h6><hr>
-<p>RIP 从某个接口学到路由后，将该路由的度量值设为 16（不可达），并从原接口发送回邻居路由器。利用这种方式，可以清楚对方路由表中的无用信息。</p>
+<h6 id="4-毒性逆转（Poison-Reverse）"><a href="#4-毒性逆转（Poison-Reverse）" class="headerlink" title="4. 毒性逆转（Poison Reverse）"></a>4. 毒性逆转（Poison Reverse）</h6><p>RIP 从某个接口学到路由后，将该路由的度量值设为 16（不可达），并从原接口发送回邻居路由器。利用这种方式，可以清楚对方路由表中的无用信息。</p>
 <p>水平分割和毒性逆转都是为了防止 RIP 中的路由环路而设计的，但是水平分割是不将收到路由条目再按 “原路返回” 来避免环路，而毒性逆转遵循 “坏消息比没消息好” 的原则，即将路由条目按“原路返回”，但是该路由条目被标记为不可达（度量值为 16）。</p>
-<h4 id="RIP-消息"><a href="#RIP-消息" class="headerlink" title="RIP 消息"></a>RIP 消息</h4><hr>
-<p>RIP 报文由头部（Header）和多个路由条目（Route Entries）部分组成。每个路由条目包含地址族标识、路由可达的 IP 地址和路由跳数。</p>
+<h4 id="RIP-消息"><a href="#RIP-消息" class="headerlink" title="RIP 消息"></a>RIP 消息</h4><p>RIP 报文由头部（Header）和多个路由条目（Route Entries）部分组成。每个路由条目包含地址族标识、路由可达的 IP 地址和路由跳数。</p>
 <p>RIP 报文的头部占用 4 个字节，每个路由条目占用 20 个字节。</p>
-<h5 id="RIP-报文接收处理"><a href="#RIP-报文接收处理" class="headerlink" title="RIP 报文接收处理"></a>RIP 报文接收处理</h5><hr>
-<p>相邻的实体收到广播时，就对广播的数据报进行检查。因为广播的内容可能引起路由表的更新，所以这种检查是细致的。当报文传至 IP 层时：</p>
+<h5 id="RIP-报文接收处理"><a href="#RIP-报文接收处理" class="headerlink" title="RIP 报文接收处理"></a>RIP 报文接收处理</h5><p>相邻的实体收到广播时，就对广播的数据报进行检查。因为广播的内容可能引起路由表的更新，所以这种检查是细致的。当报文传至 IP 层时：</p>
 <p>检查报文端口：是否来自端口 520 的 UDP 数据报，若不是则忽略，因为路由器不转发受限制广播。</p>
 <p>检查 RIP 报文的 Version：</p>
 <ol>
@@ -606,8 +590,7 @@
 </ul>
 </li>
 </ol>
-<h5 id="RIPv1-报文"><a href="#RIPv1-报文" class="headerlink" title="RIPv1 报文"></a>RIPv1 报文</h5><hr>
-<p>一个 RIPv1 Response 报文中，最多可以有 25 个路由条目，加上 8 个字节的 UDP 头部，RIP 数据报的大小（不含 IP 包的头部）最大可达 512 个字节。</p>
+<h5 id="RIPv1-报文"><a href="#RIPv1-报文" class="headerlink" title="RIPv1 报文"></a>RIPv1 报文</h5><p>一个 RIPv1 Response 报文中，最多可以有 25 个路由条目，加上 8 个字节的 UDP 头部，RIP 数据报的大小（不含 IP 包的头部）最大可达 512 个字节。</p>
 <p><img src="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv1.png" alt="RIPv1"></p>
 <ul>
 <li>Command：取值 1 或 2，1 表示该消息是请求消息；2 表示是响应消息。</li>
@@ -617,8 +600,7 @@
 <li>IP Address：路由的目的地址，可以是主网络地址、子网地址或主机路由地址。</li>
 <li>Metric：跳数，取值在0~16之间</li>
 </ul>
-<h6 id="RIPv1-特点"><a href="#RIPv1-特点" class="headerlink" title="RIPv1 特点"></a>RIPv1 特点</h6><hr>
-<ol>
+<h6 id="RIPv1-特点"><a href="#RIPv1-特点" class="headerlink" title="RIPv1 特点"></a>RIPv1 特点</h6><ol>
 <li>RIPv1 是<strong>有类别路由</strong></li>
 <li>只支持以<strong>广播方式</strong>发布，广播地址 255.255.255.255</li>
 <li>基于 UDP，端口号 520</li>
@@ -630,8 +612,7 @@
 <li>如果目的地址是一个和路由器直接相连的主网络的成员，那么该网络的路由器接口上配置的子网掩码将被用来确认目的地址的子网。</li>
 <li>如果目的地址不是一个和路由器直接相连的主网络的成员，那么路由器将尝试匹配该目的地址对应于A类、B类或C类的主网络号。</li>
 </ul>
-<h6 id="RIPv1-发送"><a href="#RIPv1-发送" class="headerlink" title="RIPv1 发送"></a>RIPv1 发送</h6><hr>
-<p>注意发送时没有子网掩码。</p>
+<h6 id="RIPv1-发送"><a href="#RIPv1-发送" class="headerlink" title="RIPv1 发送"></a>RIPv1 发送</h6><p>注意发送时没有子网掩码。</p>
 <p>将要发送的前缀路由和出接口网段匹配：</p>
 <ol>
 <li>如果不在同一主网，此为主网边界，将前缀自动汇总为有类网段发送前缀到出接口。</li>
@@ -645,8 +626,7 @@
 </ol>
 </li>
 </ol>
-<h6 id="RIPv1-接收"><a href="#RIPv1-接收" class="headerlink" title="RIPv1 接收"></a>RIPv1 接收</h6><hr>
-<p>收到一个前缀后，如果发现是主网络号，直接放入路由表，掩码是 8/16/24.</p>
+<h6 id="RIPv1-接收"><a href="#RIPv1-接收" class="headerlink" title="RIPv1 接收"></a>RIPv1 接收</h6><p>收到一个前缀后，如果发现是主网络号，直接放入路由表，掩码是 8/16/24.</p>
 <p>如果不是主网络号，检查是否在同一主网：</p>
 <ol>
 <li>如果不在，生成有类路由，掩码按有类路由计算。</li>
@@ -656,9 +636,7 @@
 </ol>
 </li>
 </ol>
-<h5 id="RIPv2-报文"><a href="#RIPv2-报文" class="headerlink" title="RIPv2 报文"></a>RIPv2 报文</h5><hr>
-<h6 id="不携带认证的-RIPv2"><a href="#不携带认证的-RIPv2" class="headerlink" title="不携带认证的 RIPv2"></a>不携带认证的 RIPv2</h6><hr>
-<p><img src="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv2.png" alt=""></p>
+<h5 id="RIPv2-报文"><a href="#RIPv2-报文" class="headerlink" title="RIPv2 报文"></a>RIPv2 报文</h5><h6 id="不携带认证的-RIPv2"><a href="#不携带认证的-RIPv2" class="headerlink" title="不携带认证的 RIPv2"></a>不携带认证的 RIPv2</h6><p><img src="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv2.png" alt=""></p>
 <ul>
 <li>Command：取值 1 或 2，1 表示该消息是请求消息；2 表示是响应消息。</li>
 <li>Version：对于 RIPv2，设置为 2。RIPv2可处理有效的RIPv1。</li>
@@ -670,11 +648,9 @@
 <li>Nexthop：若存在的话，它标识一个比通告路由器的地址更好的下一跳地址。若这个字段设置为全 0（0.0.0.0），说明通告路由器的地址是最优的下一跳地址。对于 RIPv1，该字段设置为全 0。</li>
 <li>Metric：跳数，取值在0~16之间</li>
 </ul>
-<h6 id="携带认证的-RIPv2"><a href="#携带认证的-RIPv2" class="headerlink" title="携带认证的 RIPv2"></a>携带认证的 RIPv2</h6><hr>
-<p><img src="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv2_认证.png" alt=""></p>
+<h6 id="携带认证的-RIPv2"><a href="#携带认证的-RIPv2" class="headerlink" title="携带认证的 RIPv2"></a>携带认证的 RIPv2</h6><p><img src="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv2_认证.png" alt=""></p>
 <p>RIPv2 在有认证的情况下最多携带 24 条路由。认证报文格式如上，其中 Authentication Type 为认证类型，RIPv2 支持简单认证和 MD5 认证两种方式，口令长度不足的补 0。</p>
-<h6 id="RIPv2-的增强特性"><a href="#RIPv2-的增强特性" class="headerlink" title="RIPv2 的增强特性"></a>RIPv2 的增强特性</h6><hr>
-<ol>
+<h6 id="RIPv2-的增强特性"><a href="#RIPv2-的增强特性" class="headerlink" title="RIPv2 的增强特性"></a>RIPv2 的增强特性</h6><ol>
 <li><strong>无类别路由协议</strong></li>
 <li><strong>组播</strong>更新，组播地址 224.0.0.9</li>
 <li>基于 UDP，端口号 520</li>
@@ -683,10 +659,8 @@
 <li>支持指定下一跳</li>
 <li>支持认证</li>
 </ol>
-<h6 id="RIPv2-接收和发送"><a href="#RIPv2-接收和发送" class="headerlink" title="RIPv2 接收和发送"></a>RIPv2 接收和发送</h6><hr>
-<p>在开启自动汇总的情况下（默认），不同主网，汇总发。同一主网，带原有的掩码发。不开自动汇总的情况下，不管是不是同一主网，一律发原有的掩码。</p>
-<h6 id="RIPv2-路由聚合"><a href="#RIPv2-路由聚合" class="headerlink" title="RIPv2 路由聚合"></a>RIPv2 路由聚合</h6><hr>
-<p>路由聚合的原理是，同一个自然网段内的不同子网的路由在向外（其它网段）发送时聚合成一个网段的路由发送。</p>
+<h6 id="RIPv2-接收和发送"><a href="#RIPv2-接收和发送" class="headerlink" title="RIPv2 接收和发送"></a>RIPv2 接收和发送</h6><p>在开启自动汇总的情况下（默认），不同主网，汇总发。同一主网，带原有的掩码发。不开自动汇总的情况下，不管是不是同一主网，一律发原有的掩码。</p>
+<h6 id="RIPv2-路由聚合"><a href="#RIPv2-路由聚合" class="headerlink" title="RIPv2 路由聚合"></a>RIPv2 路由聚合</h6><p>路由聚合的原理是，同一个自然网段内的不同子网的路由在向外（其它网段）发送时聚合成一个网段的路由发送。</p>
 <ul>
 <li>RIPv2 支持路由聚合，因为 RIPv2 报文携带掩码位，所以支持子网划分。在 RIPv2 中进行路由聚合可提高大型网络的可扩展性和效率，缩减路由表。</li>
 <li>基于 RIPv2 进程的有类聚合即实现自动聚合。</li>
