@@ -133,12 +133,14 @@
 <meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/GIF.gif">
 <meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/rip%20router.gif">
 <meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE/router%E5%BD%A2%E6%88%90.gif">
+<meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/环路.PNG">
 <meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/水平分割_1.png">
 <meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/水平分割_2.png">
 <meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv1.png">
 <meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv2.png">
 <meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv2_认证.png">
-<meta property="og:updated_time" content="2019-05-04T10:56:14.060Z">
+<meta property="og:image" content="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv2_2.PNG">
+<meta property="og:updated_time" content="2019-05-12T09:37:48.492Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RIP路由协议">
 <meta name="twitter:description" content="​        由于换了份工作，因工作需要的关系，最近开始学习 IP路由技术，总结下个人对 RIP路由协议的理解吧~">
@@ -452,7 +454,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计"> 
-                  4.9k 字
+                  5k 字
                 </span>
               
 
@@ -545,8 +547,10 @@
 <li>路由的权重设置为16，RIP以度量值为16发送这条路由的更新</li>
 <li>缺省120s后，仍没有得到更新，删除该路由</li>
 </ul>
-<h5 id="抑制定时器（Suppress-timer）"><a href="#抑制定时器（Suppress-timer）" class="headerlink" title="抑制定时器（Suppress timer）"></a>抑制定时器（Suppress timer）</h5><p>定义了RIP路由处于抑制状态的时长。•当一条路由的度量值变为16时，该路由将进入抑制状态。在抑制状态，只有来自同一邻居并且度量值小于16的路由更新才会被路由器接收，取代不可达路由。缺省为120s。</p>
-<h4 id="RIP-防止路由环路的机制"><a href="#RIP-防止路由环路的机制" class="headerlink" title="RIP 防止路由环路的机制"></a>RIP 防止路由环路的机制</h4><h5 id="路由环路的产生原因"><a href="#路由环路的产生原因" class="headerlink" title="路由环路的产生原因"></a>路由环路的产生原因</h5><h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><h6 id="1-计数到无穷（Counting-to-infinity）"><a href="#1-计数到无穷（Counting-to-infinity）" class="headerlink" title="1. 计数到无穷（Counting to infinity）"></a>1. 计数到无穷（Counting to infinity）</h6><p>将度量值等于16的路由定义为不可达（infinity）。在路由环路发生时，某条路由的度量值将会增加到16，该路由被认为不可达，避免路由环路的产生。</p>
+<h5 id="抑制定时器（Suppress-timer）"><a href="#抑制定时器（Suppress-timer）" class="headerlink" title="抑制定时器（Suppress timer）"></a>抑制定时器（Suppress timer）</h5><p>定义了RIP路由处于抑制状态的时长。当一条路由的度量值变为16时，该路由将进入抑制状态。在抑制状态，只有来自同一邻居并且度量值小于16的路由更新才会被路由器接收，取代不可达路由。缺省为120s。</p>
+<h4 id="RIP-防止路由环路的机制"><a href="#RIP-防止路由环路的机制" class="headerlink" title="RIP 防止路由环路的机制"></a>RIP 防止路由环路的机制</h4><h5 id="路由环路的产生原因"><a href="#路由环路的产生原因" class="headerlink" title="路由环路的产生原因"></a>路由环路的产生原因</h5><p><img src="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/环路.PNG" alt=""></p>
+<p>正常 192.168.0.0/24 网络被 RA 通告到 RB。当网络出现问题不能达到的时候，路由RA 等更新周期到来把192.168.0.0/24 路由信息不可达信息通告给 RB。但是 RB 在 RA 更新周期前通告给了 RA，让 RA 误以为通过 RB 的那边能达到 192.168.0.0/24 网络，结果就是造成路由环路。</p>
+<h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><h6 id="1-计数到无穷（Counting-to-infinity）"><a href="#1-计数到无穷（Counting-to-infinity）" class="headerlink" title="1. 计数到无穷（Counting to infinity）"></a>1. 计数到无穷（Counting to infinity）</h6><p>将度量值等于16的路由定义为不可达（infinity）。在路由环路发生时，某条路由的度量值将会增加到16，该路由被认为不可达，避免路由环路的产生。</p>
 <h6 id="2-触发更新（Triggered-Updates）"><a href="#2-触发更新（Triggered-Updates）" class="headerlink" title="2. 触发更新（Triggered Updates）"></a>2. 触发更新（Triggered Updates）</h6><p>RIP 通过触发更新来避免在多个路由器之间形成路由环路的可能，而且可以加快网络的收敛速度。一旦某条路由的度量值发生了变化，就立即向邻居路由器发布更新报文，而不是等到更新周期的到来。</p>
 <h6 id="3-水平分割（Split-Horizon）"><a href="#3-水平分割（Split-Horizon）" class="headerlink" title="3. 水平分割（Split Horizon）"></a>3. 水平分割（Split Horizon）</h6><p>RIP 从某个接口学到的路由信息不会重新发回该接口的邻居路由器。这样不但减少带宽消耗，还可以防止路由环路。</p>
 <p>水平分割在不同网络中实现有所区别，分为按照接口和按照邻居进行水平分割。广播网、P2P 和 P2MP 网络中是按照接口进行水平分割的，如下图所示：</p>
@@ -659,6 +663,7 @@
 <li>支持认证</li>
 </ol>
 <h6 id="RIPv2-接收和发送"><a href="#RIPv2-接收和发送" class="headerlink" title="RIPv2 接收和发送"></a>RIPv2 接收和发送</h6><p>在开启自动汇总的情况下（默认），不同主网，汇总发。同一主网，带原有的掩码发。不开自动汇总的情况下，不管是不是同一主网，一律发原有的掩码。</p>
+<p><img src="https://github.com/keymou/blog_images/raw/master/content/RIP路由协议/RIPv2_2.PNG" alt=""></p>
 <h6 id="RIPv2-路由聚合"><a href="#RIPv2-路由聚合" class="headerlink" title="RIPv2 路由聚合"></a>RIPv2 路由聚合</h6><p>路由聚合的原理是，同一个自然网段内的不同子网的路由在向外（其它网段）发送时聚合成一个网段的路由发送。</p>
 <ul>
 <li>RIPv2 支持路由聚合，因为 RIPv2 报文携带掩码位，所以支持子网划分。在 RIPv2 中进行路由聚合可提高大型网络的可扩展性和效率，缩减路由表。</li>
@@ -987,7 +992,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">20.5k</span>
+    <span title="Site words total count">20.7k</span>
   
 </div>
 
